@@ -16,12 +16,12 @@ export let board: (string|Piece)[][] = [
 
 function addPiecesToBoard(board: (string|Piece)[][]){
     for(let x = 0; x < 8; x++){
-        const white_pawn = new Pawn("white", "♙", x, 6, "f1f2c[d1d2]");
+        const white_pawn = new Pawn("white", "♙", x, 6);
         if(board[6]){
             board[6][x] = white_pawn;
         }
         
-        const black_pawn = new Pawn("black", "♟", x, 1, "f1f2c[d1d2]");
+        const black_pawn = new Pawn("black", "♟", x, 1);
         if(board[1]){
             board[1][x] = black_pawn;
         }
