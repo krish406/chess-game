@@ -1,4 +1,4 @@
-export class Piece {
+export abstract class Piece {
     color : string;
     icon : string;
     row : number;
@@ -13,12 +13,14 @@ export class Piece {
 }
 
 export class Pawn extends Piece {
+    allowedMoves: Array<[number, number]>;
+
     constructor(
         color: string,
         icon: string,
         row: number,
-        col: number,
-        private allowedMoves: string) {
-        super(color, icon, row, col)
+        col: number){
+        super(color, icon, row, col);
+        this.allowedMoves = [[0, 0], [0, 1]]
     }
 }

@@ -43,6 +43,7 @@ export default function move(this: HTMLElement, e : Event){
     }
 
     else if(typeof selection === "string" && flag && prev_row !== null && prev_col !== null){
+        
         if(board[row]){
             board[row][col] = currentPiece;
         }
@@ -62,5 +63,17 @@ export default function move(this: HTMLElement, e : Event){
         currentPiece = " ";
 
         drawBoard(board);
+    }
+}
+
+export function validateMove(currPiece: string | Piece, prev_row: number, prev_col: number, row: number, col: number){
+    if(currPiece instanceof Pawn){
+        let allowedMoves = currPiece.allowedMoves;
+        for(const[p_col, p_row] of allowedMoves){
+            if(prev_col + p_col == col && prev_row + p_row == row){
+                return true;
+            }
+        }
+        return false;
     }
 }
