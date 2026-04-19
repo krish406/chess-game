@@ -1,6 +1,5 @@
 import move from "./moves.js";
 import { Piece, Pawn } from "./pieces.js";
-let boardDisplay = document.getElementsByClassName('board')[0];
 export let board = [
     ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"],
     ["♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"],
@@ -13,17 +12,17 @@ export let board = [
 ];
 function addPiecesToBoard(board) {
     for (let x = 0; x < 8; x++) {
-        const white_pawn = new Pawn("white", "♙", x, 6, "f1f2c[d1d2]");
+        const white_pawn = new Pawn("white", "♙", x, 6);
         if (board[6]) {
             board[6][x] = white_pawn;
         }
-        const black_pawn = new Pawn("black", "♟", x, 1, "f1f2c[d1d2]");
+        const black_pawn = new Pawn("black", "♟", x, 1);
         if (board[1]) {
             board[1][x] = black_pawn;
         }
     }
 }
-function createBoard(board) {
+function createBoard(board, boardDisplay) {
     for (let i = 0; i < 8; i++) {
         let parity_i = i % 2;
         for (let j = 0; j < 8; j++) {
@@ -56,7 +55,7 @@ function createBoard(board) {
         }
     }
 }
-export function drawBoard(board) {
+export function drawBoard(board, boardDisplay) {
     let divs = boardDisplay.children;
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -81,6 +80,13 @@ export function drawBoard(board) {
         }
     }
 }
-addPiecesToBoard(board);
-createBoard(board);
+export function initBoard() {
+    let boardDisplay = document.getElementsByClassName('board')[0];
+    addPiecesToBoard(board);
+    createBoard(board, boardDisplay);
+}
+export function redrawBoard() {
+    let boardDisplay = document.getElementsByClassName('board')[0];
+    drawBoard(board, boardDisplay);
+}
 //# sourceMappingURL=board.js.map

@@ -21,6 +21,6 @@ export class Pawn extends Piece {
         row: number,
         col: number){
         super(color, icon, row, col);
-        this.allowedMoves = [[0, 0], [0, 1]]
+        this.allowedMoves = [[0, 1], [0, 2]]
     }
 }

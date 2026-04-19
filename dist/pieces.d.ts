@@ -1,4 +1,4 @@
-export declare class Piece {
+export declare abstract class Piece {
     color: string;
     icon: string;
     row: number;
@@ -6,7 +6,7 @@ export declare class Piece {
     constructor(color: string, icon: string, row: number, col: number);
 }
 export declare class Pawn extends Piece {
-    private allowedMoves;
-    constructor(color: string, icon: string, row: number, col: number, allowedMoves: string);
+    allowedMoves: Array<[number, number]>;
+    constructor(color: string, icon: string, row: number, col: number);
 }
 //# sourceMappingURL=pieces.d.ts.map

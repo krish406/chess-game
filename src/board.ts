@@ -1,8 +1,6 @@
 import move from "./moves.js";
 import { Piece, Pawn } from "./pieces.js";
 
-let boardDisplay: HTMLElement = document.getElementsByClassName('board')[0] as HTMLElement;
-
 export let board: (string|Piece)[][] = [
   ["♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"],
   ["♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"],
@@ -28,7 +26,7 @@ function addPiecesToBoard(board: (string|Piece)[][]){
     }
 }
 
-function createBoard(board: (string|Piece)[][]){
+function createBoard(board: (string|Piece)[][], boardDisplay: HTMLElement){
     for(let i = 0; i < 8; i++){
         let parity_i = i % 2;
         for(let j = 0; j < 8; j++){
@@ -67,7 +65,7 @@ function createBoard(board: (string|Piece)[][]){
     }
 }
 
-export function drawBoard(board: (String | Piece)[][]){
+export function drawBoard(board: (String | Piece)[][], boardDisplay: HTMLElement){
     let divs = boardDisplay.children;
 
     for(let i = 0; i < 8; i++){
@@ -95,6 +93,16 @@ export function drawBoard(board: (String | Piece)[][]){
     }
 }
 
-addPiecesToBoard(board);
-createBoard(board);
+export function initBoard(){
+    let boardDisplay: HTMLElement = document.getElementsByClassName('board')[0] as HTMLElement;
+    addPiecesToBoard(board);
+    createBoard(board, boardDisplay);
+}
+
+export function redrawBoard(){
+    let boardDisplay: HTMLElement = document.getElementsByClassName('board')[0] as HTMLElement;
+    drawBoard(board, boardDisplay)
+}
+
+
 

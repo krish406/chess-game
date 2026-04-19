@@ -1,4 +1,4 @@
-import { board, drawBoard } from "./board.js";
+import { board, redrawBoard } from "./board.js";
 import { Piece, Pawn } from "./pieces.js";
 /*
 click a square
@@ -34,22 +34,37 @@ export default function move(e) {
         flag = true;
     }
     else if (typeof selection === "string" && flag && prev_row !== null && prev_col !== null) {
-        if (board[row]) {
-            board[row][col] = currentPiece;
+        if (validateMove(currentPiece, prev_row, prev_col, row, col)) {
+            if (board[row]) {
+                board[row][col] = currentPiece;
+            }
+            //remember 0 is falsy so you can't just say if(prev_row)
+            //typescript narrowing is weird
+            if (board[prev_row]) {
+                let row = board[prev_row];
+                if (row) {
+                    row[prev_col] = " ";
+                }
+            }
+            flag = false;
+            prev_row = null;
+            prev_col = null;
+            currentPiece = " ";
+            redrawBoard();
         }
-        //remember 0 is falsy so you can't just say if(prev_row)
-        //typescript narrowing is weird
-        if (board[prev_row]) {
-            let row = board[prev_row];
-            if (row) {
-                row[prev_col] = " ";
+    }
+}
+export function validateMove(currPiece, prev_row, prev_col, row, col) {
+    if (currPiece instanceof Pawn) {
+        let allowedMoves = currPiece.allowedMoves;
+        for (const [p_col, p_row] of allowedMoves) {
+            console.log(prev_col, p_col);
+            console.log(prev_row, p_row);
+            if (prev_col + p_col == col && prev_row - p_row == row) {
+                return true;
             }
         }
-        flag = false;
-        prev_row = null;
-        prev_col = null;
-        currentPiece = " ";
-        drawBoard(board);
+        return false;
     }
 }
 //# sourceMappingURL=moves.js.map

@@ -12,9 +12,9 @@ export class Piece {
 }
 export class Pawn extends Piece {
     allowedMoves;
-    constructor(color, icon, row, col, allowedMoves) {
+    constructor(color, icon, row, col) {
         super(color, icon, row, col);
-        this.allowedMoves = allowedMoves;
+        this.allowedMoves = [[0, 1], [0, 2]];
     }
 }
 //# sourceMappingURL=pieces.js.map
