@@ -1,4 +1,4 @@
-import { board } from "./board.js";
+import { board, drawBoard } from "./board.js";
 import { Piece, Pawn } from "./pieces.js";
 /*
 click a square
@@ -49,7 +49,7 @@ export default function move(e) {
         prev_row = null;
         prev_col = null;
         currentPiece = " ";
-        console.log(board);
+        drawBoard(board);
     }
 }
 //# sourceMappingURL=moves.js.map

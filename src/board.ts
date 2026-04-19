@@ -98,4 +98,3 @@ export function drawBoard(board: (String | Piece)[][]){
 addPiecesToBoard(board);
 createBoard(board);
 
-drawBoard(board);

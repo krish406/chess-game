@@ -83,5 +83,4 @@ export function drawBoard(board) {
 }
 addPiecesToBoard(board);
 createBoard(board);
-drawBoard(board);
 //# sourceMappingURL=board.js.map

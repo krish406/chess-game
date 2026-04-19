@@ -1,4 +1,4 @@
-import { board } from "./board.js"
+import { board, drawBoard } from "./board.js"
 import { Piece, Pawn } from "./pieces.js";
 
 /*
@@ -61,6 +61,6 @@ export default function move(this: HTMLElement, e : Event){
         prev_col = null;
         currentPiece = " ";
 
-        console.log(board)
+        drawBoard(board);
     }
 }
